@@ -23,8 +23,7 @@ selectJobRole.addEventListener('change', e => {
  
 //5."T-Shirt Info" section 
 //create variables for tshirt color and design options and create to select children from color section of the html 
-//disable colors until tshirt design is selected and then create an event listener passing through a for loop for the design variable to listen to an event change to enable color options
- 
+//disable color <select> until tshirt design event listener is changed and then enable color element 
     let designTheme = document.querySelector('#design');
     let colorShirt = document.querySelector('#color');
     colorShirt.disabled = true;
