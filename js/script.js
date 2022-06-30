@@ -25,37 +25,29 @@ selectJobRole.addEventListener('change', e => {
 //create variables for tshirt color and design options and create to select children from color section of the html 
 //disable colors until tshirt design is selected and then create an event listener passing through a for loop for the design variable to listen to an event change to enable color options
  
-const colorSelectElement = document.getElementById('color'); 
-const colorOptionElements = document.querySelectorAll('#color option'); 
-colorSelectElement.style.display = 'none'; 
- 
-const designField = document.getElementById('design'); 
- 
-designField.addEventListener('change', e => {
-    colorSelectElement.style.display = '';
-    const punOptions = document.querySelectorAll('option[data-theme="js puns"]');
-    const heartOptions = document.querySelectorAll('option[data-theme="heart js"]');
-    if (e.target.value === 'js puns'){
-        punOptions[0].selected = true;
-        for (const option of punOptions){
-            option.hidden = false;
-        }
-         for (const option of heartOptions){
-             option.hidden = true;
-         }
-      
-        
-    } else if (e.target.value === 'heart js'){
-        heartOptions[0].selected = true;
-        for (const option of heartOptions){
-            option.hidden = false;
-        }
-        for (const option of punOptions){
-            option.hidden = true;
+    let designTheme = document.querySelector('#design');
+    let colorShirt = document.querySelector('#color');
+    colorShirt.disabled = true;
+
+    designTheme.addEventListener ('change', (e) => {
+        colorShirt.disabled = false;
+        for (let i = 0; i < colorShirt.length; i++){
+            let colorOption = colorShirt.children[i].getAttribute("data-theme");
+            let colorValue = e.target.value
+
+            if (colorOption === colorValue){
+                colorShirt[i].hidden = false;
+                colorShirt[i].selected = true;
+            } else if (colorOption != colorValue){
+                colorShirt[i].hidden = true;
+                colorShirt[i].selected = false;
+            }
         }
         
-    }
-});
+        }
+        
+    );
+
  
 // 6. "Register for Activities" section
 //Create variables and create an event listener that listens for change
